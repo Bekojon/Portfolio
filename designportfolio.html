@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bekojon – Minecraft Designer Portfolio</title>
+    <!-- Favicon from images folder -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0f1c 0%, #0b1120 100%);
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            color: #eef5ff;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.8rem;
+        }
+
+        .profile {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2.2rem;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 2rem 2.2rem;
+            margin-bottom: 3.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .pfp {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #3b82f6;
+            box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.25), 0 12px 25px -8px black;
+            background: #1e293b;
+            transition: transform 0.2s ease;
+        }
+
+        .pfp:hover {
+            transform: scale(1.02);
+        }
+
+        .intro h1 {
+            font-size: 2.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #90cdf4, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #a5b4fc;
+            margin: 0.4rem 0 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tools-section {
+            margin: 1rem 0 1.2rem 0;
+        }
+
+        .tools-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #8ba3d4;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tool-badge {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .tool-badge i {
+            font-size: 1rem;
+        }
+
+        .tool-badge:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .intro p {
+            max-width: 620px;
+            color: #cbd5e1;
+            font-size: 1.02rem;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 0.8rem 1rem;
+            border-radius: 1.2rem;
+            margin: 0.8rem 0 0 0;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            background: #111827cc;
+            backdrop-filter: blur(4px);
+            padding: 0.7rem 1.4rem;
+            border-radius: 60px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #2d3a5e;
+        }
+
+        .social-btn i {
+            font-size: 1.25rem;
+        }
+
+        .social-btn:hover {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+        }
+
+        .social-btn.telegram:hover { background: #0088cc; border-color: #0088cc; }
+        .social-btn.youtube:hover { background: #ff0000; border-color: #ff0000; }
+        .social-btn.discord:hover { background: #5865f2; border-color: #5865f2; }
+
+        .gallery-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1.2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: #0f172ad9;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid #1e2a44;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            background: #0a0f1a;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .thumbnail {
+            transform: scale(1.02);
+        }
+
+        .hover-badge {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #0f172ae6, #1e293be6);
+            backdrop-filter: blur(8px);
+            padding: 0.8rem 1.2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #3b82f6;
+        }
+
+        .card:hover .hover-badge {
+            transform: translateY(0);
+        }
+
+        .type-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .type-badge i {
+            font-size: 1rem;
+        }
+
+        .type-badge.simple i {
+            color: #fbbf24;
+        }
+
+        .type-badge.premium i {
+            color: #fbbf24;
+        }
+
+        .hover-price {
+            font-weight: 800;
+            font-size: 1.1rem;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4px 12px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            max-width: 90vw;
+        }
+
+        .modal-content {
+            max-width: 85vw;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 1rem;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+            border: 2px solid #3b82f6;
+        }
+
+        .modal-content.slide-left {
+            animation: slideLeft 0.25s ease forwards;
+        }
+
+        .modal-content.slide-right {
+            animation: slideRight 0.25s ease forwards;
+        }
+
+        @keyframes slideLeft {
+            0% { opacity: 0.3; transform: translateX(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        @keyframes slideRight {
+            0% { opacity: 0.3; transform: translateX(-30px) scale(0.95); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(59, 130, 246, 0.6);
+            z-index: 1002;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .nav-arrow:hover {
+            background: #3b82f6;
+            transform: translateY(-50%) scale(1.1);
+            border-color: #3b82f6;
+        }
+
+        .nav-arrow.left {
+            left: 30px;
+        }
+
+        .nav-arrow.right {
+            right: 30px;
+        }
+
+        .modal-info {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            z-index: 1002;
+        }
+
+        .modal-info .modal-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .modal-info .modal-type i {
+            font-size: 1.2rem;
+        }
+
+        .modal-info .modal-type.simple i {
+            color: #fbbf24;
+        }
+
+        .modal-info .modal-type.premium i {
+            color: #fbbf24;
+        }
+
+        .modal-info .modal-price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            font-family: monospace;
+            background: #00000066;
+            padding: 5px 16px;
+            border-radius: 40px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 42px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1003;
+        }
+
+        .close-modal:hover {
+            color: #3b82f6;
+            transform: scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1e293b;
+            color: #6b7b9f;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem;
+            }
+            .profile {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            .intro h1 {
+                font-size: 2rem;
+            }
+            .social-links, .tools-grid, .tools-title {
+                justify-content: center;
+            }
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .nav-arrow.left {
+                left: 10px;
+            }
+            .nav-arrow.right {
+                right: 10px;
+            }
+            .modal-info {
+                padding: 0.6rem 1.2rem;
+                gap: 1rem;
+                bottom: 15px;
+            }
+            .modal-info .modal-type {
+                font-size: 0.85rem;
+            }
+            .modal-info .modal-price {
+                font-size: 0.95rem;
+            }
+            .modal-content {
+                max-width: 95vw;
+                max-height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="profile">
+        <img class="pfp" src="images/pfp.png" alt="Bekojon profile photo" 
+             onerror="this.onerror=null; this.src='https://placehold.co/400x400/1e293b/3b82f6?text=BEKOJON';">
+        <div class="intro">
+            <h1>Bekojon</h1>
+            <div class="tagline">
+                <i class="fas fa-crown"></i> Minecraft creator · Designer
+            </div>
+            <div class="tools-section">
+                <div class="tools-title">
+                    <i class="fas fa-tools"></i> Tools I use
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-badge"><i class="fas fa-paintbrush-fine"></i> Ibis Paint X</div>
+                    <div class="tool-badge"><i class="fas fa-cube"></i> Blockbench</div>
+                    <div class="tool-badge"><i class="fas fa-image"></i> Adobe Photoshop</div>
+                    <div class="tool-badge"><i class="fas fa-gamepad"></i> Minecraft</div>
+                </div>
+            </div>
+            <p>
+                <i class="fas fa-gem" style="margin-right: 6px; color: #60a5fa;"></i> 
+                Hello! I'm a professional Minecraft designer with <strong>3.5+ years of experience</strong>. 
+                On this site you can explore my finest works. <i class="fas fa-rocket" style="margin-left: 4px;"></i><br>
+                ✍️ Want to collaborate or just say hi? Connect with me via Telegram, Discord, or subscribe 
+                on YouTube! 💙
+            </p>
+            <div class="social-links">
+                <a href="https://t.me/Bekojon" class="social-btn telegram" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                <a href="https://youtube.com/@BekojonUZ" class="social-btn youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://discord.com/users/faster_beko" class="social-btn discord" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-title">
+        <i class="fas fa-images"></i> Portfolio · Thumbnail Showcase
+    </div>
+    <div class="grid" id="thumbnailGrid"></div>
+
+    <footer>
+        Copyright © 2026 Bekojon - All rights reserved.<br>
+        This work is protected by copyright law and is not free to use without permission.
+    </footer>
+</div>
+
+<div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <div class="modal-container">
+        <div class="nav-arrow left" id="prevArrow"><i class="fas fa-chevron-left"></i></div>
+        <img class="modal-content" id="modalImage">
+        <div class="nav-arrow right" id="nextArrow"><i class="fas fa-chevron-right"></i></div>
+    </div>
+    <div class="modal-info" id="modalInfo"></div>
+</div>
+
+<script>
+    const thumbnailsData = [
+        { src: "images/thumb/thumb1.jpg", alt: "thumbnail1", type: "Simple", price: 15, filename: "thumb1.jpg" },
+        { src: "images/thumb/thumb2.jpg", alt: "thumbnail2", type: "PREMIUM", price: 30, filename: "thumb2.jpg" },
+        { src: "images/thumb/thumb3.jpg", alt: "thumbnail5", type: "PREMIUM", price: 30, filename: "thumb3.jpg" },
+        { src: "images/thumb/thumb4.png", alt: "thumbnail4", type: "PREMIUM", price: 30, filename: "thumb4.png" },
+        { src: "images/thumb/thumb5.jpg", alt: "thumbnail5", type: "PREMIUM", price: 30, filename: "thumb5.jpg" },
+        { src: "images/thumb/thumb6.jpg", alt: "thumbnail6", type: "PREMIUM", price: 30, filename: "thumb6.jpg" }
+    ];
+
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    const gridContainer = document.getElementById('thumbnailGrid');
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalInfo = document.getElementById('modalInfo');
+    const closeModal = document.querySelector('.close-modal');
+    const prevArrow = document.getElementById('prevArrow');
+    const nextArrow = document.getElementById('nextArrow');
+
+    function updateModalContent(index, animationClass = null) {
+        const item = thumbnailsData[index];
+        if (!item) return;
+        
+        if (animationClass) {
+            modalImg.classList.add(animationClass);
+            setTimeout(() => {
+                modalImg.classList.remove(animationClass);
+            }, 250);
+        }
+        
+        modalImg.src = item.src;
+        modalImg.alt = item.alt;
+        
+        const typeIcon = item.type === 'Simple' ? '<i class="fas fa-star"></i>' : '<i class="fas fa-crown"></i>';
+        modalInfo.innerHTML = `
+            <div class="modal-type ${item.type === 'Simple' ? 'simple' : 'premium'}">
+                ${typeIcon}
+                <span>${item.type}</span>
+            </div>
+            <div class="modal-price">
+                $${item.price}
+            </div>
+        `;
+        
+        prevArrow.style.display = index === 0 ? 'none' : 'flex';
+        nextArrow.style.display = index === thumbnailsData.length - 1 ? 'none' : 'flex';
+    }
+
+    function nextImage() {
+        if (isAnimating) return;
+        if (currentIndex < thumbnailsData.length - 1) {
+            isAnimating = true;
+            currentIndex++;
+            updateModalContent(currentIndex, 'slide-left');
+            setTimeout(() => { isAnimating = false; }, 250);
+        }
+    }
+
+    function prevImage() {
+        if (isAnimating) return;
+        if (currentIndex > 0) {
+            isAnimating = true;
+            currentIndex--;
+            updateModalContent(currentIndex, 'slide-right');
+            setTimeout(() => { isAnimating = false; }, 250);
+        }
+    }
+
+    function openModal(index) {
+        currentIndex = index;
+        updateModalContent(currentIndex);
+        modal.style.display = 'flex';
+        void modal.offsetWidth;
+        modal.classList.add('show');
+    }
+
+    function closeModalFunc() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modalImg.src = '';
+        }, 250);
+    }
+
+    thumbnailsData.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        
+        const thumbContainer = document.createElement('div');
+        thumbContainer.className = 'thumbnail-container';
+        
+        const img = document.createElement('img');
+        img.className = 'thumbnail';
+        img.src = item.src;
+        img.alt = item.alt;
+        img.loading = 'lazy';
+        
+        img.onerror = function() {
+            this.style.display = 'none';
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = 'width:100%; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; background:#0f172a; color:#94a3b8; font-family:monospace; font-size:0.9rem; text-align:center; padding:1rem;';
+            errorDiv.innerHTML = `<i class="fas fa-image" style="margin-right:8px; opacity:0.5;"></i> ${item.filename}`;
+            thumbContainer.insertBefore(errorDiv, img);
+            img.remove();
+        };
+        
+        const hoverBadge = document.createElement('div');
+        hoverBadge.className = 'hover-badge';
+        
+        const typeBadge = document.createElement('div');
+        typeBadge.className = `type-badge ${item.type === 'Simple' ? 'simple' : 'premium'}`;
+        if (item.type === 'Simple') {
+            typeBadge.innerHTML = `<i class="fas fa-star"></i> <span>${item.type}</span>`;
+        } else {
+            typeBadge.innerHTML = `<i class="fas fa-crown"></i> <span>${item.type}</span>`;
+        }
+        
+        const priceSpan = document.createElement('div');
+        priceSpan.className = 'hover-price';
+        priceSpan.innerHTML = `$${item.price}`;
+        
+        hoverBadge.appendChild(typeBadge);
+        hoverBadge.appendChild(priceSpan);
+        
+        thumbContainer.appendChild(img);
+        thumbContainer.appendChild(hoverBadge);
+        card.appendChild(thumbContainer);
+        
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (img.parentElement && img.tagName === 'IMG' && img.src && !img.src.includes('undefined') && img.style.display !== 'none') {
+                openModal(idx);
+            }
+        });
+        
+        gridContainer.appendChild(card);
+    });
+
+    prevArrow.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+    nextArrow.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+    closeModal.onclick = closeModalFunc;
+    
+    modal.onclick = function(e) {
+        if (e.target === modal) closeModalFunc();
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (modal.style.display === 'flex') {
+            if (e.key === 'ArrowLeft') prevImage();
+            else if (e.key === 'ArrowRight') nextImage();
+            else if (e.key === 'Escape') closeModalFunc();
+        }
+    });
+</script>
+</body>
+</html>
