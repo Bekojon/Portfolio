@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Bekojon – Minecraft Designer Portfolio</title>
+    <title>Bekojon – Minecraft Designer</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -47,7 +46,7 @@
             font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
             color: var(--text-primary);
             line-height: 1.5;
-            transition: background 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), color 0.3s ease;
+            transition: background 0.4s, color 0.3s;
         }
 
         section {
@@ -294,7 +293,7 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.3s;
         }
         .card:hover { transform: translateY(-8px) scale(1.02); border-color: #3b82f6; }
         .thumbnail-container {
@@ -317,7 +316,7 @@
             background: linear-gradient(90deg, #0f172ae6, #1e293be6);
             padding: 0.8rem 1.2rem;
             transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: transform 0.3s;
             display: flex;
             justify-content: space-between;
         }
@@ -435,7 +434,7 @@
         }
         .close-contact:hover { color: #3b82f6; }
 
-        /* Image Modal */
+        /* IMAGE MODAL - ONLY SWIPE, NO FADE */
         .modal {
             display: none;
             position: fixed;
@@ -444,39 +443,37 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(0,0,0,0.9);
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: opacity 0.2s;
         }
-        .modal.show { display: flex; opacity: 1; }
+        .modal.show { display: flex; }
         
         .modal-content {
             max-width: 85vw;
-            max-height: 75vh;
+            max-height: 80vh;
             object-fit: contain;
             border-radius: 1rem;
             border: 2px solid #3b82f6;
         }
         
-        @keyframes swipeInFromRight {
-            0% { opacity: 0; transform: translateX(100px); }
-            100% { opacity: 1; transform: translateX(0); }
+        /* PURE SWIPE ANIMATIONS - NO FADE */
+        @keyframes swipeFromRight {
+            0% { transform: translateX(150px); }
+            100% { transform: translateX(0); }
         }
         
-        @keyframes swipeInFromLeft {
-            0% { opacity: 0; transform: translateX(-100px); }
-            100% { opacity: 1; transform: translateX(0); }
+        @keyframes swipeFromLeft {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(0); }
         }
         
-        .modal-content.swipe-in-right {
-            animation: swipeInFromRight 0.4s ease forwards;
+        .modal-content.swipe-right {
+            animation: swipeFromRight 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
         }
         
-        .modal-content.swipe-in-left {
-            animation: swipeInFromLeft 0.4s ease forwards;
+        .modal-content.swipe-left {
+            animation: swipeFromLeft 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
         }
         
         .nav-arrow {
@@ -515,23 +512,36 @@
             white-space: nowrap;
             z-index: 1002;
         }
+        
+        /* CLOSE BUTTON - CENTERED */
         .close-modal {
-            position: absolute;
+            position: fixed;
             top: 25px;
             right: 35px;
-            font-size: 42px;
-            cursor: pointer;
-            background: rgba(0,0,0,0.5);
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
+            background: rgba(0,0,0,0.6);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            cursor: pointer;
             z-index: 1003;
+            transition: all 0.2s;
+            border: 1px solid rgba(59,130,246,0.5);
+            font-size: 0;
+        }
+        .close-modal::before {
+            content: '✕';
+            font-size: 24px;
+            color: white;
+            font-weight: normal;
+            line-height: 1;
+            display: block;
+            text-align: center;
         }
         .close-modal:hover { background: #3b82f6; transform: scale(1.1); }
+        
         footer {
             text-align: center;
             margin-top: 4rem;
@@ -541,7 +551,6 @@
             font-size: 0.75rem;
         }
         
-        /* MOBILE MENU - SIMPLE, NO BLUR */
         @media (max-width: 768px) {
             .hamburger { display: block; }
             
@@ -584,6 +593,13 @@
             .price-value { font-size: 1.2rem; }
             .modal-content { max-width: 95vw; max-height: 70vh; }
             .theme-toggle { margin-top: 1rem; }
+            .close-modal {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+            .close-modal::before { font-size: 20px; }
         }
     </style>
 </head>
@@ -611,7 +627,7 @@
                     <div class="tagline"><i class="fas fa-crown"></i> Minecraft creator · Designer</div>
                     <div class="description-text">
                         <i class="fas fa-gem" style="margin-right: 8px; color: #60a5fa;"></i> 
-                        Hello! I'm a professional Minecraft designer with <strong>3.5+ years of experience</strong>. 
+                        Hello! I'm a professional Minecraft designer with <strong>4 years of experience</strong>. 
                         On this site you can explore my finest works. <i class="fas fa-rocket"></i>
                     </div>
                     <div class="tools-section">
@@ -653,22 +669,20 @@
         <footer>Copyright © 2026 Bekojon - All rights reserved.<br>This work is protected by copyright law.</footer>
     </div>
 
-    <!-- Contact Modal -->
     <div id="contactModal" class="contact-modal">
         <div class="contact-card">
             <h2><i class="fas fa-address-card"></i> Contact Me</h2>
             <div class="contact-buttons">
                 <a href="https://t.me/Bekojon" class="contact-btn telegram" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram: @Bekojon</a>
-                <a href="https://youtube.com/@BekojonUZ" class="contact-btn youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube: @BekojonUZ</a>
+                <a href="https://youtube.com/@Bekojon_UZ" class="contact-btn youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube: @BekojonUZ</a>
                 <a href="https://discord.com/users/faster_beko" class="contact-btn discord" target="_blank"><i class="fab fa-discord"></i> Discord: @faster_beko</a>
             </div>
             <button class="close-contact" id="closeContactBtn"><i class="fas fa-times"></i> Close</button>
         </div>
     </div>
 
-    <!-- Image Modal -->
     <div id="imageModal" class="modal">
-        <span class="close-modal">&times;</span>
+        <div class="close-modal"></div>
         <div class="nav-arrow left" id="prevArrow"><i class="fas fa-chevron-left"></i></div>
         <img class="modal-content" id="modalImage">
         <div class="nav-arrow right" id="nextArrow"><i class="fas fa-chevron-right"></i></div>
@@ -708,14 +722,15 @@
             prevArrow.style.display = idx === 0 ? 'none' : 'flex';
             nextArrow.style.display = idx === thumbnailsData.length-1 ? 'none' : 'flex';
             
+            // ONLY SWIPE - NO FADE
             if (direction === 'next') {
-                modalImg.classList.remove('swipe-in-left');
-                modalImg.classList.add('swipe-in-right');
-                setTimeout(() => modalImg.classList.remove('swipe-in-right'), 500);
+                modalImg.classList.remove('swipe-left');
+                modalImg.classList.add('swipe-right');
+                setTimeout(() => modalImg.classList.remove('swipe-right'), 350);
             } else if (direction === 'prev') {
-                modalImg.classList.remove('swipe-in-right');
-                modalImg.classList.add('swipe-in-left');
-                setTimeout(() => modalImg.classList.remove('swipe-in-left'), 500);
+                modalImg.classList.remove('swipe-right');
+                modalImg.classList.add('swipe-left');
+                setTimeout(() => modalImg.classList.remove('swipe-left'), 350);
             }
         }
         
@@ -725,7 +740,7 @@
                 isAnimating = true;
                 currentIndex++;
                 updateModalContent(currentIndex, 'next');
-                setTimeout(() => { isAnimating = false; }, 500);
+                setTimeout(() => { isAnimating = false; }, 350);
             }
         }
         
@@ -735,7 +750,7 @@
                 isAnimating = true;
                 currentIndex--;
                 updateModalContent(currentIndex, 'prev');
-                setTimeout(() => { isAnimating = false; }, 500);
+                setTimeout(() => { isAnimating = false; }, 350);
             }
         }
         
@@ -752,16 +767,15 @@
             
             modal.style.display = 'flex';
             setTimeout(() => modal.classList.add('show'), 10);
-            modalImg.classList.add('swipe-in-right');
-            setTimeout(() => modalImg.classList.remove('swipe-in-right'), 500);
+            modalImg.classList.add('swipe-right');
+            setTimeout(() => modalImg.classList.remove('swipe-right'), 350);
         }
         
         function closeModalFunc() {
             modal.classList.remove('show');
-            setTimeout(() => { modal.style.display = 'none'; }, 250);
+            setTimeout(() => { modal.style.display = 'none'; }, 200);
         }
 
-        // Build thumbnails
         thumbnailsData.forEach((item, idx) => {
             const card = document.createElement('div'); card.className = 'card';
             const container = document.createElement('div'); container.className = 'thumbnail-container';
@@ -806,7 +820,6 @@
             else { icon.className = 'fas fa-moon'; span.textContent = 'Dark'; }
         });
         
-        // Mobile Menu - SIMPLE, NO BLUR
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         
@@ -814,24 +827,16 @@
             navLinks.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
         function closeMobileMenu() {
             navLinks.classList.remove('active');
             document.body.style.overflow = '';
         }
         
-        if (hamburger) {
-            hamburger.addEventListener('click', openMobileMenu);
-        }
-        
-        // Close menu when clicking on any link
+        if (hamburger) hamburger.addEventListener('click', openMobileMenu);
         document.querySelectorAll('.nav-links a, .nav-links button').forEach(el => {
-            el.addEventListener('click', () => {
-                setTimeout(closeMobileMenu, 150);
-            });
+            el.addEventListener('click', () => setTimeout(closeMobileMenu, 150));
         });
         
-        // Contact Modal
         const contactModal = document.getElementById('contactModal');
         const contactNavBtn = document.getElementById('contactNavBtn');
         const closeContactBtn = document.getElementById('closeContactBtn');
@@ -843,18 +848,12 @@
                 closeMobileMenu();
             });
         }
-        
         if (closeContactBtn) {
-            closeContactBtn.addEventListener('click', () => {
-                contactModal.classList.remove('show');
-            });
+            closeContactBtn.addEventListener('click', () => contactModal.classList.remove('show'));
         }
-        
         if (contactModal) {
             contactModal.addEventListener('click', (e) => {
-                if (e.target === contactModal) {
-                    contactModal.classList.remove('show');
-                }
+                if (e.target === contactModal) contactModal.classList.remove('show');
             });
         }
         
@@ -872,12 +871,14 @@
             if (contactModal && contactModal.classList.contains('show') && e.key === 'Escape') {
                 contactModal.classList.remove('show');
             }
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                closeMobileMenu();
-            }
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) closeMobileMenu();
         });
         
-        setTimeout(() => { sections.forEach(section => { if (section.getBoundingClientRect().top < window.innerHeight - 100) section.classList.add('visible'); }); }, 100);
+        setTimeout(() => {
+            sections.forEach(section => {
+                if (section.getBoundingClientRect().top < window.innerHeight - 100) section.classList.add('visible');
+            });
+        }, 100);
     </script>
 </body>
 </html>
